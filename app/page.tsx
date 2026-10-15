@@ -25,7 +25,7 @@ export default async function Home() {
         <section className="relative isolate overflow-hidden bg-ink-900 text-white">
           <Navbar />
           <div className="mx-auto grid max-w-[1280px] items-end px-4 pt-32 lg:grid-cols-[1.1fr_1fr] lg:pt-32">
-            <div className="pb-28 lg:pb-32">
+            <div className="relative z-10 pb-24 pt-72 lg:pb-32 lg:pt-0">
               <p className="eyebrow reveal !text-gold-300">{h.eyebrow}</p>
               <h1 className="reveal mt-3 text-4xl leading-[1.2] sm:text-5xl lg:text-6xl">{h.h1a} <br /><span className="text-gold-300">{h.h1b}</span></h1>
               <p className="reveal mt-5 max-w-xl text-lg text-white/80">{h.lead}</p>
@@ -33,15 +33,15 @@ export default async function Home() {
                 <WaButton className="btn btn-gold" />
                 <Link href="/properties" className="btn btn-outline">{h.browse} <Arrow size={16} aria-hidden /></Link>
               </div>
-              <ul className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-4">
+              <ul className="mt-8 grid grid-cols-4 gap-2 sm:gap-5">
                 {h.trust.map(([t, s], i) => { const I = trustIcons[i]; return (
-                  <li key={t} className="text-start"><I className="mb-2 text-gold-300" size={26} aria-hidden /><p className="text-sm font-bold">{t}</p><p className="text-xs text-white/70">{s}</p></li>
+                  <li key={t} className="text-center lg:text-start"><I className="mx-auto mb-1 text-gold-300 lg:mx-0 lg:mb-2" size={24} aria-hidden /><p className="text-[11px] font-bold leading-snug sm:text-sm">{t}</p><p className="hidden text-xs text-white/70 sm:block">{s}</p></li>
                 ); })}
               </ul>
             </div>
-            <div className="relative -mx-4 h-[420px] lg:mx-0 lg:h-[640px]">
+            <div className="absolute inset-x-0 top-0 h-[560px] lg:relative lg:inset-auto lg:h-[640px]">
               <Image src="/img/hager-hero.webp" alt={h.heroAlt} fill priority sizes="(max-width:1024px) 100vw, 45vw" className="object-cover object-[50%_18%] lg:object-top" />
-              <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink-900 via-transparent to-transparent" />
+              <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/50 to-transparent lg:via-transparent" />
               <div aria-hidden className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-ink-900 to-transparent" />
               <div aria-hidden className="absolute inset-y-0 left-0 hidden w-28 bg-gradient-to-r from-ink-900 to-transparent lg:block" />
               <div aria-hidden className="absolute inset-y-0 right-0 hidden w-28 bg-gradient-to-l from-ink-900 to-transparent lg:block" />
@@ -53,9 +53,9 @@ export default async function Home() {
         <div className="relative z-10 -mt-12 px-4"><SearchBar districts={[...new Set(all.map((p) => p.district))]} types={[...new Set(all.map((p) => p.type))]} /></div>
 
         <section aria-label={h.stepsLabel} className="mx-auto max-w-[1280px] px-4 pb-6 pt-16">
-          <ol className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+          <ol className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
             {h.steps.map(([t, s], i) => { const I = stepIcons[i]; return (
-              <li key={t} className="flex items-start gap-3 rounded-xl border border-line bg-paper p-4">
+              <li key={t} className="flex items-start gap-2 rounded-xl border border-line bg-paper p-3 sm:gap-3 sm:p-4">
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold-200 text-gold-700"><I size={20} aria-hidden /></span>
                 <span><span className="block text-sm font-bold">{i + 1}. {t}</span><span className="block text-xs text-muted">{s}</span></span>
               </li>
@@ -68,9 +68,9 @@ export default async function Home() {
             <div><p className="eyebrow">{h.projEyebrow}</p><h2 className="text-3xl text-ink">{h.projTitle}</h2></div>
             <Link href="/properties" className="btn btn-outline !border-line text-sm">{d.viewAll}</Link>
           </div>
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
+          <div className="-mx-4 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 md:mx-0 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:px-0">
             {demoProjects.map((pr, i) => (
-              <article key={pr.image} className="card overflow-hidden">
+              <article key={pr.image} className="card w-[78%] shrink-0 snap-start overflow-hidden md:w-auto">
                 <div className="relative aspect-[16/10] bg-ink-800">
                   <Image src={pr.image} alt={`${d.projects[i].name} (${d.demoImg})`} fill sizes="(max-width:768px) 100vw, 33vw" className="object-cover" />
                   <span className="absolute start-3 top-3 rounded-md bg-white/95 px-3 py-0.5 text-xs font-bold text-ink-900">{d.projects[i].tag}</span>
@@ -90,7 +90,7 @@ export default async function Home() {
               <Link href="/properties" className="btn btn-outline !border-gold-600 text-sm">{d.viewAll}</Link>
             </div>
             {demo && <p className="mt-3 text-sm text-muted">{h.unitsNote}</p>}
-            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{all.slice(0, 4).map((p) => <PropertyCard key={p.slug} p={p} />)}</div>
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">{all.slice(0, 4).map((p) => <PropertyCard key={p.slug} p={p} />)}</div>
           </div>
         </section>
 
