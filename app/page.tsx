@@ -105,8 +105,8 @@ export default async function Home() {
               <h2 className="mt-5 text-3xl">{h.aboutTitle}</h2>
               <p className="mt-1 font-bold text-gold-300">{d.role}</p>
               <p className="mt-4 max-w-xl leading-8 text-white/80">{h.aboutBody}</p>
-              <ul className="mt-6 grid gap-4 sm:grid-cols-3">
-                {h.pillars.map(([t, s], i) => { const I = pillarIcons[i]; return <li key={t}><I className="mb-1 text-gold-300" size={24} aria-hidden /><p className="text-sm font-bold">{t}</p><p className="text-xs text-white/70">{s}</p></li>; })}
+              <ul className="mt-6 grid grid-cols-3 gap-3">
+                {h.pillars.map(([t, s], i) => { const I = pillarIcons[i]; return <li key={t} className="text-start"><I className="mb-1 text-gold-300" size={24} aria-hidden /><p className="text-[13px] font-bold leading-snug sm:text-sm">{t}</p><p className="text-[11px] leading-snug text-white/70 sm:text-xs">{s}</p></li>; })}
               </ul>
               <Link href="/about" className="btn btn-gold mt-8">{h.aboutCta}</Link>
             </div>
