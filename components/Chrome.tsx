@@ -79,15 +79,15 @@ export async function Footer() {
   const d = await getDict();
   return (
     <footer className="bg-ink-950 text-white/80">
-      <div className="mx-auto flex max-w-[1280px] flex-col items-start gap-6 px-4 py-8 md:flex-row md:items-center md:justify-between">
-        <Link href="/" aria-label={d.homeLabel} className="inline-block shrink-0"><Image src="/brand/logo-t.png" alt={`${d.name} - ${d.role}`} width={900} height={844} className="h-auto w-36" unoptimized /></Link>
-        <nav aria-label={d.footer.links} className="flex flex-wrap gap-x-6 gap-y-3 text-sm">
+      <div className="mx-auto flex max-w-[1280px] flex-col items-start gap-4 px-4 py-5 md:flex-row md:items-center md:justify-between">
+        <Logo />
+        <nav aria-label={d.footer.links} className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
           {[...d.nav, ["/privacy", d.footer.privacy]].map(([h, l]) => <Link key={h} href={h} className="hover:text-gold-300">{l}</Link>)}
         </nav>
       </div>
       <div className="border-t border-white/10">
         {/* Fixed physical layout on every screen: developer credit left, name centre, WhatsApp right. */}
-        <div dir="ltr" className="mx-auto grid max-w-[1280px] grid-cols-[auto_1fr_auto] items-center gap-3 px-4 py-5 text-xs">
+        <div dir="ltr" className="mx-auto grid max-w-[1280px] grid-cols-[auto_1fr_auto] items-center gap-3 px-4 py-3 text-xs">
           <div className="justify-self-start"><DeveloperCredit /></div>
           <p dir={d.dir} className="text-center">{d.footer.copy}</p>
           <div dir={d.dir} className="justify-self-end"><WaButton label={<><span className="hidden sm:inline">{d.wa}</span><span className="sm:hidden">{d.waShort}</span></>} className="btn btn-gold !px-3 text-sm sm:!px-5 sm:text-base" /></div>
