@@ -11,7 +11,7 @@ export async function Logo() {
   const d = await getDict();
   return (
     <Link href="/" className="flex items-center gap-2 sm:gap-3" aria-label={d.homeLabel}>
-      <Image src="/brand/mark.png" alt="" width={54} height={46} className="h-[44px] w-auto" aria-hidden />
+      <Image src="/brand/mark-t.png" alt="" width={54} height={46} className="h-[44px] w-auto" unoptimized aria-hidden />
       <span className="leading-tight text-white">
         <span className="block whitespace-nowrap text-sm font-extrabold sm:text-lg">{d.name}</span>
         <span className="serif hidden text-[11px] tracking-[0.18em] text-gold-300 sm:block">{d.nameLatin}</span>
@@ -81,7 +81,7 @@ export async function Footer() {
     <footer className="bg-ink-950 text-white/80">
       <div className="mx-auto grid max-w-[1280px] grid-cols-2 items-start gap-x-6 gap-y-8 px-4 py-10 md:grid-cols-[1.6fr_1fr_1fr]">
         <div className="col-span-2 max-w-sm md:col-span-1">
-          <Link href="/" aria-label={d.homeLabel} className="inline-block"><Image src="/brand/logo-full.png" alt={`${d.name} - ${d.role}`} width={900} height={844} className="h-auto w-56" /></Link>
+          <Link href="/" aria-label={d.homeLabel} className="inline-block"><Image src="/brand/logo-t.png" alt={`${d.name} - ${d.role}`} width={900} height={844} className="h-auto w-56" unoptimized /></Link>
           <p className="mt-4 text-sm leading-7">{d.footer.blurb}</p>
         </div>
         <div className="space-y-2 text-sm"><p className="font-bold text-white">{d.footer.links}</p>
