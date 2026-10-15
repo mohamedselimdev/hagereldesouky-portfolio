@@ -115,12 +115,12 @@ export default async function Home() {
 
         <section id="testimonials" className="mx-auto max-w-[1280px] px-4 py-14">
           <div className="text-center"><p className="eyebrow">{h.tEyebrow}</p><h2 className="text-3xl text-ink">{h.tTitle}</h2></div>
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
+          <div className="mt-8 grid grid-cols-3 gap-2 sm:gap-5">
             {[1, 2, 3].map((n) => (
-              <figure key={n} className="rounded-[var(--radius-card)] border border-dashed border-gold-600 bg-paper p-6 text-center">
-                <span className="rounded bg-gold-200 px-2 py-0.5 text-xs font-bold text-gold-700">{d.demo}</span>
-                <blockquote className="mt-4 text-muted">{h.tBody}</blockquote>
-                <figcaption className="mt-3 text-sm text-muted">{h.tName}</figcaption>
+              <figure key={n} className="rounded-[var(--radius-card)] border border-dashed border-gold-600 bg-paper p-3 text-center sm:p-6">
+                <span className="rounded bg-gold-200 px-2 py-0.5 text-[11px] font-bold text-gold-700 sm:text-xs">{d.demo}</span>
+                <blockquote className="mt-3 text-[11px] leading-5 text-muted sm:mt-4 sm:text-base sm:leading-normal">{h.tBody}</blockquote>
+                <figcaption className="mt-2 text-[11px] text-muted sm:mt-3 sm:text-sm">{h.tName}</figcaption>
               </figure>
             ))}
           </div>

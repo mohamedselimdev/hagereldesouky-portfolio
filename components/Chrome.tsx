@@ -79,17 +79,11 @@ export async function Footer() {
   const d = await getDict();
   return (
     <footer className="bg-ink-950 text-white/80">
-      <div className="mx-auto grid max-w-[1280px] grid-cols-2 items-start gap-x-6 gap-y-8 px-4 py-10 md:grid-cols-[1.6fr_1fr_1fr]">
-        <div className="col-span-2 max-w-sm md:col-span-1">
-          <Link href="/" aria-label={d.homeLabel} className="inline-block"><Image src="/brand/logo-t.png" alt={`${d.name} - ${d.role}`} width={900} height={844} className="h-auto w-56" unoptimized /></Link>
-          <p className="mt-4 text-sm leading-7">{d.footer.blurb}</p>
-        </div>
-        <div className="space-y-2 text-sm"><p className="font-bold text-white">{d.footer.links}</p>
-          <Link className="block hover:text-gold-300" href="/properties">{d.nav[2][1]}</Link>
-          <Link className="block hover:text-gold-300" href="/book-viewing">{d.bookViewing}</Link>
-          <Link className="block hover:text-gold-300" href="/contact">{d.contactMe}</Link></div>
-        <div className="space-y-2 text-sm"><p className="font-bold text-white">{d.footer.legal}</p>
-          <Link className="block hover:text-gold-300" href="/privacy">{d.footer.privacy}</Link></div>
+      <div className="mx-auto flex max-w-[1280px] flex-col items-start gap-6 px-4 py-8 md:flex-row md:items-center md:justify-between">
+        <Link href="/" aria-label={d.homeLabel} className="inline-block shrink-0"><Image src="/brand/logo-t.png" alt={`${d.name} - ${d.role}`} width={900} height={844} className="h-auto w-36" unoptimized /></Link>
+        <nav aria-label={d.footer.links} className="flex flex-wrap gap-x-6 gap-y-3 text-sm">
+          {[...d.nav, ["/privacy", d.footer.privacy]].map(([h, l]) => <Link key={h} href={h} className="hover:text-gold-300">{l}</Link>)}
+        </nav>
       </div>
       <div className="border-t border-white/10">
         {/* Fixed physical layout on every screen: developer credit left, name centre, WhatsApp right. */}
