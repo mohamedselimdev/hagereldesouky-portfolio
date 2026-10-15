@@ -92,11 +92,11 @@ export async function Footer() {
           <Link className="block hover:text-gold-300" href="/privacy">{d.footer.privacy}</Link></div>
       </div>
       <div className="border-t border-white/10">
-        {/* Fixed physical layout: WhatsApp right, name centre, developer credit left. */}
-        <div dir="ltr" className="mx-auto grid max-w-[1280px] items-center gap-4 px-4 py-5 text-xs sm:grid-cols-3">
-          <div className="order-3 justify-self-center sm:order-1 sm:justify-self-start"><DeveloperCredit /></div>
-          <p dir={d.dir} className="order-2 text-center">{d.footer.copy}</p>
-          <div dir={d.dir} className="order-1 justify-self-center sm:order-3 sm:justify-self-end"><WaButton className="btn btn-gold" /></div>
+        {/* Fixed physical layout on every screen: developer credit left, name centre, WhatsApp right. */}
+        <div dir="ltr" className="mx-auto grid max-w-[1280px] grid-cols-[auto_1fr_auto] items-center gap-3 px-4 py-5 text-xs">
+          <div className="justify-self-start"><DeveloperCredit /></div>
+          <p dir={d.dir} className="text-center">{d.footer.copy}</p>
+          <div dir={d.dir} className="justify-self-end"><WaButton label={<><span className="hidden sm:inline">{d.wa}</span><span className="sm:hidden">{d.waShort}</span></>} className="btn btn-gold !px-3 text-sm sm:!px-5 sm:text-base" /></div>
         </div>
       </div>
     </footer>
