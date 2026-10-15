@@ -126,12 +126,12 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="bg-ink-950 py-14 text-center text-white">
+        <section className="bg-gold-200/60 py-14 text-center text-ink">
           <div className="mx-auto max-w-2xl px-4">
-            <p className="eyebrow !text-gold-300">{h.ctaEyebrow}</p>
-            <h2 className="mt-2 text-3xl">{h.ctaTitle}</h2>
-            <p className="mt-2 text-white/75">{h.ctaBody}</p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3"><WaButton /><Link href="/book-viewing" className="btn btn-outline">{d.bookViewing}</Link></div>
+            <p className="eyebrow">{h.ctaEyebrow}</p>
+            <h2 className="mt-2 text-3xl text-ink">{h.ctaTitle}</h2>
+            <p className="mt-2 text-muted">{h.ctaBody}</p>
+            <div className="mt-6 flex flex-wrap justify-center gap-3"><WaButton /><Link href="/book-viewing" className="btn btn-outline !border-gold-600">{d.bookViewing}</Link></div>
           </div>
         </section>
       </main>
