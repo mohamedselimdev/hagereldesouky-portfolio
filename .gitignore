@@ -43,3 +43,7 @@ data/*.json
 
 # local export archives
 *.zip
+
+# build output
+/.open-next/
+/.wrangler/
