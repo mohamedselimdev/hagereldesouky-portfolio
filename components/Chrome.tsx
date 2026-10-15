@@ -7,15 +7,11 @@ import { ThemeToggle } from "./ThemeToggle";
 import { MobileMenu } from "./MobileMenu";
 import { LangToggle } from "./LangToggle";
 
-export async function Logo() {
+export async function Logo({ className = "h-12 sm:h-14" }: { className?: string }) {
   const d = await getDict();
   return (
-    <Link href="/" className="flex items-center gap-2 sm:gap-3" aria-label={d.homeLabel}>
-      <Image src="/brand/mark-t.png" alt="" width={54} height={46} className="h-[44px] w-auto" unoptimized aria-hidden />
-      <span className="leading-tight text-white">
-        <span className="block whitespace-nowrap text-sm font-extrabold sm:text-lg">{d.name}</span>
-        <span className="serif hidden text-[11px] tracking-[0.18em] text-gold-300 sm:block">{d.nameLatin}</span>
-      </span>
+    <Link href="/" className="inline-flex shrink-0" aria-label={d.homeLabel}>
+      <Image src="/brand/logo-en.png" alt={d.nameLatin} width={760} height={602} className={`${className} w-auto`} unoptimized />
     </Link>
   );
 }
@@ -80,7 +76,7 @@ export async function Footer() {
   return (
     <footer className="bg-ink-950 text-white/80">
       <div className="mx-auto flex max-w-[1280px] flex-col items-start gap-3 px-4 py-4 md:flex-row md:items-center md:justify-between">
-        <Link href="/" aria-label={d.homeLabel} className="inline-block"><Image src="/brand/mark-t.png" alt={d.homeLabel} width={179} height={160} className="h-14 w-auto sm:h-16" unoptimized /></Link>
+        <Logo className="h-14 sm:h-20" />
         <nav aria-label={d.footer.links} className="flex flex-wrap gap-x-4 gap-y-1 text-xs sm:text-sm">
           {[...d.nav, ["/privacy", d.footer.privacy]].map(([h, l]) => <Link key={h} href={h} className="hover:text-gold-300">{l}</Link>)}
         </nav>
