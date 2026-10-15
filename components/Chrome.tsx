@@ -1,52 +1,59 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MessageCircle, Phone } from "lucide-react";
-import { hasRealProperties } from "@/lib/properties";
-import { waLink, generalMsg, getWhatsappNumber } from "@/lib/whatsapp";
+import { waLink, getWhatsappNumber } from "@/lib/whatsapp";
+import { getDict, getLocale } from "@/lib/i18n";
+import { ThemeToggle } from "./ThemeToggle";
+import { MobileMenu } from "./MobileMenu";
+import { LangToggle } from "./LangToggle";
 
-export function Logo() {
+export async function Logo() {
+  const d = await getDict();
   return (
-    <Link href="/" className="flex items-center gap-3" aria-label="هاجر الدسوقي - الرئيسية">
-      <Image src="/brand/mark-gold.svg" alt="" width={40} height={40} aria-hidden />
+    <Link href="/" className="flex items-center gap-2 sm:gap-3" aria-label={d.homeLabel}>
+      <Image src="/brand/mark.png" alt="" width={54} height={46} className="h-[44px] w-auto mix-blend-screen" aria-hidden />
       <span className="leading-tight text-white">
-        <span className="block text-lg font-extrabold">هاجر الدسوقي</span>
-        <span className="serif block text-[11px] tracking-[0.18em] text-gold-300">HAGER EL DESOUKY</span>
+        <span className="block whitespace-nowrap text-sm font-extrabold sm:text-lg">{d.name}</span>
+        <span className="serif hidden text-[11px] tracking-[0.18em] text-gold-300 sm:block">{d.nameLatin}</span>
       </span>
     </Link>
   );
 }
 
-export async function WaButton({ message = generalMsg, label = "تواصل عبر واتساب", className = "btn btn-gold" }: { message?: string; label?: React.ReactNode; className?: string }) {
-  const href = waLink(await getWhatsappNumber(), message);
+export async function WaButton({ message, label, className = "btn btn-gold" }: { message?: string; label?: React.ReactNode; className?: string }) {
+  const d = await getDict();
+  const href = waLink(await getWhatsappNumber(), message ?? d.waGeneral);
   const external = href.startsWith("http");
   return (
     <a href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className={className} data-event="whatsapp_click">
-      <MessageCircle size={18} aria-hidden /> {label}
+      <MessageCircle size={18} aria-hidden /> {label ?? d.wa}
     </a>
   );
 }
 
-const nav = [["/", "الرئيسية"], ["/#projects", "المشاريع"], ["/properties", "الوحدات المتاحة"], ["/about", "عني"], ["/#testimonials", "آراء العملاء"], ["/contact", "تواصل معي"]];
-
-export function Navbar() {
+export async function Navbar() {
+  const d = await getDict();
+  const locale = await getLocale();
   return (
-    <header className="absolute inset-x-0 top-0 z-30">
-      <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-4 px-4 py-4">
+    <header className="absolute inset-x-0 top-0 z-30 px-3 pt-3">
+      <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-3 rounded-2xl border border-gold-500/60 bg-ink-950/80 px-4 py-2.5 shadow-lg backdrop-blur">
         <Logo />
-        <nav aria-label="القائمة الرئيسية" className="hidden items-center gap-7 text-sm text-white/90 lg:flex">
-          {nav.map(([h, l]) => <Link key={h} href={h} className="transition-colors hover:text-gold-300">{l}</Link>)}
+        <nav aria-label={d.mainNav} className="hidden items-center gap-7 text-sm text-white/90 lg:flex">
+          {d.nav.map(([h, l]) => <Link key={h} href={h} className="transition-colors hover:text-gold-300">{l}</Link>)}
         </nav>
-        <WaButton label={<><span className="hidden sm:inline">تواصل عبر </span>واتساب</>} className="btn btn-gold whitespace-nowrap !py-2 text-sm" />
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <WaButton className="btn btn-gold hidden whitespace-nowrap !py-2 text-sm xl:inline-flex" />
+          <LangToggle to={locale === "ar" ? "en" : "ar"} label={d.langToggle} aria={d.langAria} />
+          <ThemeToggle label={d.themeToggle} />
+          <MobileMenu items={d.nav} labels={{ open: d.openMenu, close: d.closeMenu, nav: d.mobileNav }} />
+        </div>
       </div>
-      <nav aria-label="قائمة الجوال" className="flex gap-5 overflow-x-auto whitespace-nowrap px-4 pb-2 text-sm text-white/90 lg:hidden">
-        {nav.map(([h, l]) => <Link key={h} href={h} className="py-2">{l}</Link>)}
-      </nav>
     </header>
   );
 }
 
 export function PageNav() {
-  return <div className="relative h-28 bg-ink-900 lg:h-20"><Navbar /></div>;
+  return <div className="relative h-[92px] bg-ink-900"><Navbar /></div>;
 }
 
 /** Shared developer credit. Pinned to the far left edge of the footer bar on every page. */
@@ -69,21 +76,21 @@ function DeveloperCredit() {
 }
 
 export async function Footer() {
-  const demo = !(await hasRealProperties());
+  const d = await getDict();
   return (
-    <footer className="bg-ink-950 text-white/80">
+    <footer className="overflow-x-clip bg-ink-950 text-white/80">
       <div className="mx-auto grid max-w-[1280px] gap-8 px-4 py-10 md:grid-cols-3">
-        <div><Logo /><p className="mt-3 text-sm">استشارات عقارية بخبرة وشفافية ومتابعة شخصية لاختيار وحدتك المناسبة.</p></div>
-        <div className="space-y-2 text-sm"><p className="font-bold text-white">روابط</p>
-          <Link className="block hover:text-gold-300" href="/properties">الوحدات المتاحة</Link>
-          <Link className="block hover:text-gold-300" href="/book-viewing">احجز معاينة</Link>
-          <Link className="block hover:text-gold-300" href="/contact">تواصل معي</Link></div>
-        <div className="space-y-2 text-sm"><p className="font-bold text-white">قانوني</p>
-          <Link className="block hover:text-gold-300" href="/privacy">سياسة الخصوصية</Link></div>
+        <div><Logo /><p className="mt-3 text-sm">{d.footer.blurb}</p></div>
+        <div className="space-y-2 text-sm"><p className="font-bold text-white">{d.footer.links}</p>
+          <Link className="block hover:text-gold-300" href="/properties">{d.nav[2][1]}</Link>
+          <Link className="block hover:text-gold-300" href="/book-viewing">{d.bookViewing}</Link>
+          <Link className="block hover:text-gold-300" href="/contact">{d.contactMe}</Link></div>
+        <div className="space-y-2 text-sm"><p className="font-bold text-white">{d.footer.legal}</p>
+          <Link className="block hover:text-gold-300" href="/privacy">{d.footer.privacy}</Link></div>
       </div>
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-3 px-4 pb-20 pt-4 text-xs">
-          <p>© هاجر الدسوقي.{demo && " الصور والوحدات والمشاريع المعروضة حالياً تجريبية للعرض فقط."}</p>
+        <div className="mx-auto flex max-w-[1280px] flex-col gap-3 px-4 pb-24 pt-4 text-xs sm:flex-row sm:items-center sm:justify-between sm:pb-20">
+          <p>{d.footer.copy}</p>
           <DeveloperCredit />
         </div>
       </div>
@@ -91,10 +98,11 @@ export async function Footer() {
   );
 }
 
-export function WaFab() {
+export async function WaFab() {
+  const d = await getDict();
   return (
     <div className="fixed bottom-4 start-4 z-40">
-      <WaButton label="واتساب" className="btn btn-gold rounded-full shadow-lg" />
+      <WaButton label={d.waShort} className="btn btn-gold rounded-full shadow-lg" />
     </div>
   );
 }

@@ -62,7 +62,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ e
   return (
     <main className="grid gap-6">
       <section className="card p-6">
-        <h1 className="text-2xl font-extrabold text-ink-900">الوحدات</h1>
+        <h1 className="text-2xl font-extrabold text-ink">الوحدات</h1>
         {!enabled && <p className="mt-3 rounded-lg bg-gold-200 p-3 text-sm">التخزين غير متصل. الإضافة والتعديل تعملان بعد النشر على Cloudflare (KV باسم SETTINGS).</p>}
         {!real && <p className="mt-3 rounded-lg bg-gold-200 p-3 text-sm">الوحدات المعروضة حالياً تجريبية. أول وحدة تضيفها ستحلّ محلها كلها في الموقع.</p>}
         {q.saved && <p role="status" className="mt-3 rounded-lg bg-gold-200 p-3 text-sm">تم الحفظ.</p>}
@@ -89,7 +89,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ e
       </section>
 
       <section className="card p-6">
-        <h2 className="text-xl font-extrabold text-ink-900">{cur ? `تعديل ${cur.code}` : "إضافة وحدة"}</h2>
+        <h2 className="text-xl font-extrabold text-ink">{cur ? `تعديل ${cur.code}` : "إضافة وحدة"}</h2>
         <form key={cur?.slug ?? "new"} action={save} className="mt-4 grid gap-4 sm:grid-cols-2">
           <input type="hidden" name="slug" value={cur?.slug ?? ""} />
           <label className={L}>كود الوحدة<input required name="code" defaultValue={cur?.code} readOnly={!!cur} dir="ltr" placeholder="HD-101" className="field" /></label>

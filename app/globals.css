@@ -8,9 +8,19 @@
   --success:#2F7D5B; --danger:#B3453F;
   --radius-card:14px; --radius-btn:10px;
   --shadow-card:0 12px 28px rgba(36,27,18,.07); --shadow-hover:0 18px 40px rgba(36,27,18,.14);
+  --primary-bg:var(--ink-900); --primary-fg:#FFFFFF;
+  color-scheme:light;
   --font-ar:'Tajawal', system-ui, sans-serif;
   --font-serif:'Cormorant Garamond', Georgia, serif;
   --font-signature:'Allura', cursive;
+}
+/* Dark theme: only semantic tokens change. Dark sections (hero, about, footer) stay dark in both themes. */
+:root[data-theme="dark"] {
+  --ivory:#15110F; --paper:#231D19; --text:#F3EDE6; --muted:#B9AC9F; --line:#41362E;
+  --gold-700:#D2AB78; --gold-200:#2D2420;
+  --primary-bg:#B88D56; --primary-fg:#14100E;
+  --shadow-card:0 12px 28px rgba(0,0,0,.35); --shadow-hover:0 18px 40px rgba(0,0,0,.5);
+  color-scheme:dark;
 }
 @theme inline {
   --color-ink-950:var(--ink-950); --color-ink-900:var(--ink-900); --color-ink-800:var(--ink-800); --color-ink-700:var(--ink-700);
@@ -28,10 +38,10 @@ h1,h2,h3{font-weight:800;line-height:1.25}
 @layer components {
 .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-card);box-shadow:var(--shadow-card)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border-radius:var(--radius-btn);padding:.7rem 1.25rem;font-weight:700;transition:background-color .2s,color .2s,border-color .2s;min-height:44px}
-.btn-primary{background:var(--ink-900);color:#fff}.btn-primary:hover{background:var(--gold-700)}
+.btn-primary{background:var(--primary-bg);color:var(--primary-fg)}.btn-primary:hover{background:var(--gold-700)}
 .btn-gold{background:var(--gold-500);color:var(--ink-950)}.btn-gold:hover{background:var(--gold-300)}
 .btn-outline{border:1px solid var(--gold-600);color:inherit}.btn-outline:hover{background:rgba(184,141,86,.16)}
-.field{width:100%;border:1px solid var(--line);border-radius:var(--radius-btn);padding:.65rem .8rem;background:#fff;min-height:44px}
+.field{width:100%;border:1px solid var(--line);border-radius:var(--radius-btn);padding:.65rem .8rem;background:var(--paper);color:var(--text);min-height:44px}
 .field:focus{outline:2px solid var(--gold-600);outline-offset:1px}
 .eyebrow{color:var(--gold-700);font-weight:700;font-size:.85rem;letter-spacing:.02em}
 }

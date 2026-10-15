@@ -30,6 +30,3 @@ export function waLink(number: string, message: string) {
   if (!number) return "/contact#form";
   return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
-export const generalMsg = "مرحباً أستاذة هاجر، أرغب في الاستفسار عن الوحدات المتاحة.";
-export const propertyMsg = (name: string, code: string, url: string) =>
-  `مرحباً أستاذة هاجر، مهتم بوحدة ${name} رقم ${code} ورابطها ${url}، وأرغب في معرفة التفاصيل أو حجز معاينة.`;

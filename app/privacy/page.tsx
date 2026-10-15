@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { PageNav, Footer } from "@/components/Chrome";
-export const metadata = { title: "سياسة الخصوصية" };
-export default function Page() {
-  return (<><PageNav /><main className="mx-auto max-w-3xl space-y-3 px-4 py-10 leading-8"><h1 className="text-3xl font-extrabold">سياسة الخصوصية</h1>
-    <p>نجمع الحد الأدنى من البيانات (الاسم، الهاتف، تفضيلات الموعد) لغرض التواصل بخصوص طلبك فقط، ولا نشاركها مع أطراف أخرى دون موافقتك. (مسودة، تُراجع قانونيًا قبل الإطلاق.)</p></main><Footer /></>);
+import { getDict } from "@/lib/i18n";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return { title: (await getDict()).privacy.title };
+}
+export default async function Page() {
+  const d = await getDict();
+  return (<><PageNav /><main className="mx-auto max-w-3xl space-y-3 px-4 py-10 leading-8"><h1 className="text-3xl">{d.privacy.title}</h1>
+    <p>{d.privacy.body}</p></main><Footer /></>);
 }

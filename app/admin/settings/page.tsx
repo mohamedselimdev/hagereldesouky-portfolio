@@ -19,7 +19,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ s
   const store = hasSettingsStore();
   return (
     <main className="card max-w-xl p-8">
-      <h1 className="text-2xl font-extrabold text-ink-900">الإعدادات</h1>
+      <h1 className="text-2xl font-extrabold text-ink">الإعدادات</h1>
       <form action={save} className="mt-6 grid gap-3">
         <label className="grid gap-1 text-sm font-bold">رقم واتساب هاجر
           <input name="whatsapp" dir="ltr" inputMode="tel" defaultValue={current} placeholder="20XXXXXXXXXX" disabled={!store} className="field" />

@@ -20,5 +20,7 @@ export const demoProjects = [
   { name: "مشروع تجريبي ٣", tag: "فاخر", place: "موقع يُحدَّد لاحقاً", image: "/img/demo-project-3.webp" },
 ];
 
-export const fmtPrice = (p: number | null) => (p == null ? "السعر عند الطلب" : new Intl.NumberFormat("ar-EG").format(p) + " ج.م");
-export const fmtNum = (n: number) => new Intl.NumberFormat("ar-EG").format(n);
+type Fmt = { intl: string; currency: string; priceOnRequest: string };
+const arFmt: Fmt = { intl: "ar-EG", currency: "ج.م", priceOnRequest: "السعر عند الطلب" };
+export const fmtPrice = (p: number | null, f: Fmt = arFmt) => (p == null ? f.priceOnRequest : new Intl.NumberFormat(f.intl).format(p) + " " + f.currency);
+export const fmtNum = (n: number, intl = "ar-EG") => new Intl.NumberFormat(intl).format(n);

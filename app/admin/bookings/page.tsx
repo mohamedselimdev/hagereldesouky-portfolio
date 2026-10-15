@@ -18,7 +18,7 @@ export default async function Page() {
   const rows = await listBookings();
   return (
     <main className="card p-6">
-      <h1 className="text-2xl font-extrabold text-ink-900">الحجوزات</h1>
+      <h1 className="text-2xl font-extrabold text-ink">الحجوزات</h1>
       {!bookingsEnabled() && <p className="mt-3 rounded-lg bg-gold-200 p-3 text-sm">التخزين غير متصل. يعمل بعد النشر على Cloudflare (KV باسم SETTINGS).</p>}
       {bookingsEnabled() && rows.length === 0 && <p className="mt-3 text-muted">لا توجد حجوزات بعد.</p>}
       <div className="mt-4 overflow-x-auto">

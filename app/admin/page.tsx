@@ -19,7 +19,7 @@ export default async function Admin() {
   ] as const;
   return (
     <main className="space-y-6">
-      <h1 className="text-3xl font-extrabold text-ink-900">لوحة التحكم</h1>
+      <h1 className="text-3xl font-extrabold text-ink">لوحة التحكم</h1>
       {!enabled && <p className="rounded-lg bg-gold-200 p-3 text-sm">التخزين غير متصل، فالأرقام تظهر بعد النشر على Cloudflare.</p>}
       <section aria-label="المؤشرات" className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {kpis.map(([I, l, v]) => <div key={l} className="card p-5"><I className="text-gold-700" aria-hidden /><p className="mt-2 text-sm text-muted">{l}</p><p className="text-3xl font-extrabold">{fmtNum(v)}</p></div>)}
