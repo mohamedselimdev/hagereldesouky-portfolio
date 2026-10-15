@@ -39,7 +39,7 @@ export default async function Home() {
                 ); })}
               </ul>
             </div>
-            <div className="absolute inset-x-0 top-0 h-[560px] lg:relative lg:inset-auto lg:h-[640px]">
+            <div className="absolute inset-x-0 top-14 h-[560px] lg:relative lg:inset-auto lg:h-[640px]">
               <Image src="/img/hager-hero.webp" alt={h.heroAlt} fill priority sizes="(max-width:1024px) 100vw, 45vw" className="object-cover object-[50%_18%] lg:object-top" />
               <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/50 to-transparent lg:via-transparent" />
               <div aria-hidden className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-ink-900 to-transparent" />
