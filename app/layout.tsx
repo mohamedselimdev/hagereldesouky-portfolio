@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: d.siteDesc,
     alternates: { canonical: "/" },
     icons: { icon: "/icon.png" },
-    openGraph: { title: d.siteTitle, description: d.siteDesc, images: ["/brand/logo-t.png"] },
+    openGraph: { title: d.siteTitle, description: d.siteDesc, images: ["/brand/mark-t.png"] },
   };
 }
 

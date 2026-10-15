@@ -80,7 +80,7 @@ export async function Footer() {
   return (
     <footer className="bg-ink-950 text-white/80">
       <div className="mx-auto flex max-w-[1280px] flex-col items-start gap-3 px-4 py-4 md:flex-row md:items-center md:justify-between">
-        <Link href="/" aria-label={d.homeLabel} className="inline-block"><Image src="/brand/logo-t.png" alt={`${d.name} - ${d.role}`} width={900} height={844} className="h-auto w-20 sm:w-28" unoptimized /></Link>
+        <Link href="/" aria-label={d.homeLabel} className="inline-block"><Image src="/brand/mark-t.png" alt={d.homeLabel} width={179} height={160} className="h-14 w-auto sm:h-16" unoptimized /></Link>
         <nav aria-label={d.footer.links} className="flex flex-wrap gap-x-4 gap-y-1 text-xs sm:text-sm">
           {[...d.nav, ["/privacy", d.footer.privacy]].map(([h, l]) => <Link key={h} href={h} className="hover:text-gold-300">{l}</Link>)}
         </nav>
