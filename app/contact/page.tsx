@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageNav, Footer, WaFab, WaButton } from "@/components/Chrome";
+import { PageNav, Footer, WaButton } from "@/components/Chrome";
 import { getWhatsappNumber } from "@/lib/whatsapp";
 import { getDict } from "@/lib/i18n";
 import Link from "next/link";
@@ -14,5 +14,5 @@ export default async function Page() {
       {!(await getWhatsappNumber()) && <p className="rounded-lg bg-gold-200 p-3 text-sm">{d.contact.noNumber}</p>}
       <WaButton className="btn btn-primary w-full" />
       <Link href="/book-viewing" className="btn btn-gold w-full">{d.bookConsult}</Link>
-    </div></main><Footer /><WaFab /></>);
+    </div></main><Footer /></>);
 }

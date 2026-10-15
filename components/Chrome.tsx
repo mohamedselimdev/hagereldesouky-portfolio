@@ -11,7 +11,7 @@ export async function Logo() {
   const d = await getDict();
   return (
     <Link href="/" className="flex items-center gap-2 sm:gap-3" aria-label={d.homeLabel}>
-      <Image src="/brand/mark.png" alt="" width={54} height={46} className="h-[44px] w-auto mix-blend-screen" aria-hidden />
+      <Image src="/brand/mark.png" alt="" width={54} height={46} className="h-[44px] w-auto" aria-hidden />
       <span className="leading-tight text-white">
         <span className="block whitespace-nowrap text-sm font-extrabold sm:text-lg">{d.name}</span>
         <span className="serif hidden text-[11px] tracking-[0.18em] text-gold-300 sm:block">{d.nameLatin}</span>
@@ -78,9 +78,12 @@ function DeveloperCredit() {
 export async function Footer() {
   const d = await getDict();
   return (
-    <footer className="overflow-x-clip bg-ink-950 text-white/80">
-      <div className="mx-auto grid max-w-[1280px] gap-8 px-4 py-10 md:grid-cols-3">
-        <div><Logo /><p className="mt-3 text-sm">{d.footer.blurb}</p></div>
+    <footer className="bg-ink-950 text-white/80">
+      <div className="mx-auto grid max-w-[1280px] grid-cols-2 gap-x-6 gap-y-8 px-4 py-10 md:grid-cols-3">
+        <div className="col-span-2 md:col-span-1">
+          <Link href="/" aria-label={d.homeLabel} className="inline-block"><Image src="/brand/logo-full.png" alt={`${d.name} - ${d.role}`} width={900} height={844} className="h-auto w-48" /></Link>
+          <p className="mt-3 max-w-sm text-sm">{d.footer.blurb}</p>
+        </div>
         <div className="space-y-2 text-sm"><p className="font-bold text-white">{d.footer.links}</p>
           <Link className="block hover:text-gold-300" href="/properties">{d.nav[2][1]}</Link>
           <Link className="block hover:text-gold-300" href="/book-viewing">{d.bookViewing}</Link>
@@ -89,21 +92,15 @@ export async function Footer() {
           <Link className="block hover:text-gold-300" href="/privacy">{d.footer.privacy}</Link></div>
       </div>
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-[1280px] flex-col gap-3 px-4 pb-24 pt-4 text-xs sm:flex-row sm:items-center sm:justify-between sm:pb-20">
-          <p>{d.footer.copy}</p>
-          <DeveloperCredit />
+        {/* Fixed physical layout: WhatsApp right, name centre, developer credit left. */}
+        <div dir="ltr" className="mx-auto grid max-w-[1280px] items-center gap-4 px-4 py-5 text-xs sm:grid-cols-3">
+          <div className="order-3 justify-self-center sm:order-1 sm:justify-self-start"><DeveloperCredit /></div>
+          <p dir={d.dir} className="order-2 text-center">{d.footer.copy}</p>
+          <div dir={d.dir} className="order-1 justify-self-center sm:order-3 sm:justify-self-end"><WaButton className="btn btn-gold" /></div>
         </div>
       </div>
     </footer>
   );
 }
 
-export async function WaFab() {
-  const d = await getDict();
-  return (
-    <div className="fixed bottom-4 start-4 z-40">
-      <WaButton label={d.waShort} className="btn btn-gold rounded-full shadow-lg" />
-    </div>
-  );
-}
 export { Phone };

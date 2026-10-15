@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageNav, Footer, WaFab } from "@/components/Chrome";
+import { PageNav, Footer } from "@/components/Chrome";
 import { SearchBar } from "@/components/SearchBar";
 import { PropertyCard } from "@/components/PropertyCard";
 import { getProperties } from "@/lib/properties";
@@ -32,7 +32,7 @@ export default async function Properties({ searchParams }: { searchParams: Promi
           <div className="card mt-8 p-10 text-center"><p className="font-bold">{d.listing.none}</p><p className="mt-1 text-sm text-muted">{d.listing.noneHint}</p><Link href="/properties" className="btn btn-primary mt-4">{d.listing.clear}</Link></div>
         )}
       </main>
-      <Footer /><WaFab />
+      <Footer />
     </>
   );
 }

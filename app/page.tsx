@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Navbar, Footer, WaFab, WaButton } from "@/components/Chrome";
+import { Navbar, Footer, WaButton } from "@/components/Chrome";
 import { SearchBar } from "@/components/SearchBar";
 import { PropertyCard } from "@/components/PropertyCard";
 import { getProperties, hasRealProperties } from "@/lib/properties";
@@ -135,7 +135,7 @@ export default async function Home() {
           </div>
         </section>
       </main>
-      <Footer /><WaFab />
+      <Footer />
     </>
   );
 }
