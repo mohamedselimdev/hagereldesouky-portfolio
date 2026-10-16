@@ -56,7 +56,7 @@ export function PageNav() {
 function DeveloperCredit() {
   return (
     <a
-      href="https://portfolio.mohamedselim.workers.dev/ar"
+      href="https://mohamedselim.dev/ar"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Developed by Mohamed Selim"
