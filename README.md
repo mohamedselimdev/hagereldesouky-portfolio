@@ -1,7 +1,12 @@
 # Hager El Desouky | Real Estate Consultant
 
-Arabic (RTL) portfolio and listings site for the real estate consultant Hager El Desouky.
+Bilingual Arabic (RTL) and English portfolio and listings site for the real estate consultant Hager El Desouky, with responsive layouts and light/dark themes.
 Next.js 15 (App Router) + TypeScript + Tailwind 4, deployed to Cloudflare Workers with `@opennextjs/cloudflare`.
+
+Live website: https://hager-desouky-realestate.mohamedselim.workers.dev
+
+## Website preview
+![Desktop and mobile website preview](docs/website-preview.webp)
 
 ## Architecture
 - `app/`: public pages (home, listings, listing details, book a viewing, contact, about, privacy) and `app/admin/*` (units, bookings, settings).
@@ -21,6 +26,8 @@ ADMIN_PASSWORD=...
 DEV_MEMORY_KV=1
 ```
 then `npm install && npm run dev`.
+
+Checks: `npx eslint app components lib middleware.ts next.config.ts` and `npm run build`.
 
 ## Content status
 Demo units, demo projects and testimonial placeholders are labelled "تجريبي". No real prices, reviews, statistics or developer names are shipped. Replace them from the dashboard / with verified material.
